@@ -16,6 +16,8 @@
 #' @importFrom methods Summary
 #' @importFrom methods show
 #' @importFrom utils read.csv
+#'
+#' @export
 
 # options(shiny.maxRequestSize = 30*1024^2)
 # runApp(paste0(getwd(),"/ShinyApp"))
