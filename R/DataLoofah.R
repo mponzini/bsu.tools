@@ -13,6 +13,9 @@
 #' @import slickR
 #' @import haven
 #' @import shiny
+#' @importFrom methods Summary
+#' @importFrom methods show
+#' @importFrom utils read.csv
 
 # options(shiny.maxRequestSize = 30*1024^2)
 # runApp(paste0(getwd(),"/ShinyApp"))

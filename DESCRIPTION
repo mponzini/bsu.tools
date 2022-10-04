@@ -16,10 +16,12 @@ Imports:
     DT,
     ggplot2,
     haven,
+    methods,
     openxlsx,
     pacman,
     readxl,
     shiny,
     slickR,
     svglite,
-    tibble
+    tibble,
+    utils
