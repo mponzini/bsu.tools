@@ -1,7 +1,8 @@
-# load libraries and install if necessary #
-# pacman::p_load(dplyr, tibble, ggplot2, arsenal, openxlsx, readxl, DT, svglite,
-#                slickR, haven, shiny)
-
+#' DataLoofah Shiny App for Investigators
+#' @description Use function `DataLoofah()` to run the shiny app
+#'
+#'
+#'
 #' @import dplyr
 #' @import tibble
 #' @import ggplot2
