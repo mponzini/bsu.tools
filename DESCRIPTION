@@ -29,3 +29,5 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
+URL: https://github.com/mponzini/TestPackage
+BugReports: https://github.com/mponzini/TestPackage/issues
