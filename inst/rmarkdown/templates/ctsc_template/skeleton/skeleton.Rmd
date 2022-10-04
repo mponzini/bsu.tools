@@ -1,6 +1,6 @@
 ---
 title: "DRAFT -- TECHNICAL MEMORANDUM"
-subtitle: "<b>TO: </b> Investigator <br> <b> FROM: </b> Analyst <br> <b> SUBJECT:</b> Project Title <br> <b>DATE:</b> `r Sys.Date()` <br> <hr />"
+subtitle: "<b>TO: </b> Investigator <br> <b> FROM: </b> Analyst <br> <b> SUBJECT:</b> Project Title <br> <b>DATE:</b> &nbsp; `r Sys.Date()`"
 output: 
   bookdown::html_document2:
     number_sections: TRUE
@@ -47,8 +47,8 @@ knitr::opts_chunk$set(fig.width=12, fig.height=8,
 # pacman::p_load()
 
 # update 'asis' chunk to allow inline code
-knit_engines$set(asis = function(options) {
-  if (options$echo && options$eval) knit_child(text = options$code)
+knitr::knit_engines$set(asis = function(options) {
+  if (options$echo && options$eval) knitr::knit_child(text = options$code)
 })
   
 
@@ -60,6 +60,8 @@ htmltools::img(src = knitr::image_uri(file.path("CTSC_Stacked.jpg")),
                alt = 'logo', height = "120", width = "140",
                style = 'position:absolute; top:0; right:0; padding:10px;')
 ```
+
+<hr style="height:1px;color:black;background-color:black">
 
 ```{r sysinfo, include=internal}
 # displays R version, platform, base packages, attached packages, and packages
