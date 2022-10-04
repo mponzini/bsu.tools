@@ -1,0 +1,173 @@
+---
+title: "Template-vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Template-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(TestPackage)
+```
+
+# Introduction  
+
+The CTSC Template provides a skeleton for project documentation and report generation. The template should make it easier to follow reproducible research guidelines and standardize the output for CTSC projects conducted using RStudio.  
+
+# Example  
+
+An example CTSC project using the `iris` data set.  
+
+The first chunk is the setup chunk. This chunk sets a few global options (figure dimensions and chunk options), loads a list of packages, updates `asis` chunks to allow inline coding, and sets the `internal` option. The `internal` option controls the printing/inclusion of select chunks for internal documentation that does not need to be included when knitting the document for the investigator, `internal=TRUE` will print/include the chunks while `internal=FALSE` will hide those chunks.
+
+```{r setup2}
+knitr::opts_chunk$set(fig.width=12, fig.height=8,
+                      echo=TRUE, warning=FALSE, message=FALSE)
+
+# list default packages to load, add additional packages as necessary
+my_packages <- c("tidyverse", "kableExtra", "knitr")
+lapply(my_packages, library, character.only = TRUE)
+
+# update 'asis' chunk to allow inline code
+knit_engines$set(asis = function(options) {
+  if (options$echo && options$eval) knit_child(text = options$code)
+})
+
+
+internal <- TRUE
+```
+
+The second chunk is for the analysis. Depending on the complexity of the project, the project can be completed entirely within this Rmarkdown or the data preparation and analysis can be completed in separate scripts which are called in this Rmarkdown.
+
+```{r source-analyses, results='hide'}
+# source any external analysis scripts
+
+# if analysis is computationally intensive there are a few options.
+#   1) run analysis and save all results to load here
+#   2) run analysis here and set chunk option cache=TRUE. A cached chunk will
+#      automatically load output and objects from a previous run.
+#         see https://bookdown.org/yihui/rmarkdown-cookbook/cache.html for more 
+#         information
+
+# check distribution of measurements by group
+cowplot::plot_grid(ggplot(iris, aes(sample = Petal.Length)) +
+                     geom_qq() +
+                     geom_qq_line() +
+                     labs(title = 'Petal Length') +
+                     facet_wrap(.~Species),
+                   
+                   ggplot(iris, aes(sample = Petal.Width)) +
+                     geom_qq() +
+                     geom_qq_line() +
+                     labs(title = 'Petal Width') +
+                     facet_wrap(.~Species),
+                   
+                   ggplot(iris, aes(sample = Sepal.Length)) +
+                     geom_qq() +
+                     geom_qq_line() +
+                     labs(title = 'Sepal Length') +
+                     facet_wrap(.~Species),
+                   
+                   ggplot(iris, aes(sample = Sepal.Width)) +
+                     geom_qq() +
+                     geom_qq_line() +
+                     labs(title = 'Sepal Width') +
+                     facet_wrap(.~Species),
+                   
+                   nrow = 4)
+
+```
+
+The `sysinfo` chunk is an optional chunk to display the session info, R version, loaded packages and their versions, etc.
+
+```{r sysinfo, include=internal}
+# displays R version, platform, base packages, attached packages, and packages
+# loaded via a namespace
+sessionInfo()
+```
+
+The `asis` chunk is a special chunk that will allow text to be shown conditionally, based on the `internal` option. This chunk can be used for more detailed documentation of the project that is beyond what we would send the investigator.  
+
+<br>
+
+```{asis, echo=internal}
+Generic chunk to include additional notes/documentation that you do not want to
+send to the client.
+```
+
+<br>
+
+## STUDY DESCRIPTION/OBJECTIVE
+
+This study is a brief analysis of the `iris` data set.
+ 
+*Aim 1*: Provide an example of the ctsc_template_short.
+
+*Aim 2*: Investigate the species differences in petal dimensions.
+
+*Aim 3*: Investigate the species differences in sepal dimensions.
+
+
+## DATA PROCESSING
+
+No data processing was done for this analysis.
+
+## STATISTICAL ANALYSIS
+
+1. Calculate summary statistics for sepal length, sepal width, petal length, and petal width by species.  
+2. Test for group differences.
+
+
+## RESULTS
+
+The group means are provided in Table \@ref(tab:table-demo-kable) and Table \@ref(tab:table-demo-arsenal). As shown in Table \@ref(tab:table-demo-arsenal), all sepal and petal measurements are different between the groups, p < 0.001. A quick look at Figure \@ref(fig:figure-demo) shows that setosa petal length, petal width, and sepal width are likely significantly different from virginica. Sepal length is likely significantly different between setosa and veriscolor.  
+
+When using `bookown::html_documents2` the tables and figure will be automatically cross-referenced using `\@ref(tab:chunk-name)` and `\@ref(fig:chunk-name)`. This will automatically number the tables and figures. This is helpful if the project changes over time and the number of tables/figures changes. More details on cross-referencing can be found [here](https://bookdown.org/yihui/rmarkdown-cookbook/cross-ref.html).  
+
+The `tableby` function in the `arsenal` package is useful for creating summary tables with group comparisons. More details on using `arsenal::tableby` can be in their [vignette](https://cran.r-project.org/web/packages/arsenal/vignettes/tableby.html).  
+
+If your table is stored as a `data.frame`, `kableExtra` is a useful package. More details can be found [here](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html).  
+
+Another package not demonstrated here for table generation is `DT`. The only issue with `DT` tables is that they are inserted into the document as a figure rather than a table.  
+
+```{r table-demo-kable, eval=TRUE}
+# demo table by piping data into kable()
+iris %>%
+  group_by(Species) %>%
+  summarize(Sepal_Length = paste0(round(mean(Sepal.Length), 2), " \u00B1 ", 
+                                  round(sd(Sepal.Length), 2)),
+            Sepal_Width = paste0(round(mean(Sepal.Width), 2), " \u00B1 ", 
+                                 round(sd(Sepal.Width), 2)),
+            Petal_Length = paste0(round(mean(Petal.Length), 2), " \u00B1 ", 
+                                  round(sd(Petal.Length), 2)),
+            Petal_Width = paste0(round(mean(Petal.Width), 2), " \u00B1 ", 
+                                  round(sd(Petal.Width), 2))) %>%
+  kable(caption = "Summary of Sepal and Petal Lengths and Widths by Species",
+        col.names = c("Species", "Sepal Length", "Sepal Width", "Petal Length", "Petal Width")) %>%
+  kable_styling()
+```
+
+```{r table-demo-arsenal, eval=TRUE, results='asis'}
+summary(arsenal::tableby(Species ~ Sepal.Length + Sepal.Width + Petal.Length +
+                           Petal.Width, data = iris, 
+                         numeric.stats = c('meansd', 'Nmiss')), 
+        pfootnote = TRUE, title = 'Results by Species')
+```
+
+```{r figure-demo, fig.cap="\\label{fig:figs}Demo Figure Caption", eval=TRUE}
+iris %>%
+  pivot_longer(cols = c(Sepal.Length, Sepal.Width, Petal.Length, 
+                        Petal.Width),
+               values_to = "Measurements", names_to = "Part") %>%
+  ggplot(aes(x = Part, y = Measurements, color = Species)) +
+  geom_boxplot() + 
+  labs(y = "Length or Width (cm)", x = "Plant Part")
+```

@@ -1,0 +1,42 @@
+---
+title: "Rmd-options-vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Rmd-options-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(TestPackage)
+```
+
+# Rmarkdown 
+
+Recommend having the output go to `html_document2` from the `bookdown` package (`output: bookdown::html_document2`). This will let you auto-number and cross-reference tables and figures.
+
+## Chunk Options  
+
+There are several options to control the display of Rmarkdown chunks and their output. A more detailed breakdown of chunk options can be found in the [R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/chunk-options.html).
+
+* echo: This controls the printing of the R code in the resulting HTML file. If `echo=TRUE` the code will be displayed in the output and if `echo=FALSE` the code will be suppressed in the output.
+
+* eval: This controls whether or not the chunk is evaluated. If `eval=TRUE` the chunk will run and if `eval=FALSE` the chunk will not run.
+
+* warning: This controls the printing of `warning` messages. If `warning=TRUE` the warning messages will be displayed and if `warning=FALSE` the warning messages will be suppressed. Recommend leaving `warning=TRUE` while working on the project and setting `warning=FALSE` before the final knit. 
+
+* message: This controls the printing of messages. If `message=TRUE` the messages will be displayed and if `message=FALSE` the messages will be suppressed.
+
+* include: Setting `include=FALSE` allows you to evaluate the chunk while suppressing all output (source code, warnings, message, text and figure output). 
+
+
+## Using the Chunk Options within the Template  
+
+One of the goals of the CTSC Template is to easily create an internal and external version of the report. To accomplish this the template has an `internal` variable that is set to `TRUE` by default. Use the `internal` variable to easily control the chunks depending on the recipient of the output. For the `asis` chunks that are used for additional text sections set `echo=internal`. To control code chunks set `include=interal` or `eval=internal` depending on whether or not you need that chunk to be evaluated.

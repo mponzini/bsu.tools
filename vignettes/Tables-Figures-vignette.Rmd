@@ -1,0 +1,51 @@
+---
+title: "Tables-Figures-vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Tables-Figures-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(TestPackage)
+```
+
+# Tables
+
+There are three packages I recommend for generating tables: `kableExtra`, `arsenal`, and `sjPlot`.
+
+* `kable` from the `kableExtra` package for printing tables from data frames.
+* `tableby` from the `arsenal` package for creating summary tables.
+* `tab_model` from the `sjPlot` package for creating HTML tables with model results.  
+
+We are currently aware of two packages that should be avoided for table generation when using the template: `table1` and `DT`. The tables that result from these packages do not work with the auto-numbering and cross-referencing functionality of `bookdown`.
+
+## kableExtra  
+
+```{r kableextra-table}
+
+```
+
+## arsenal  
+
+```{r arsenal-table}
+
+```
+
+## sjPlot  
+
+```{r sjplot-table}
+
+```
+
+# Figures  
+
+There are currently no packages that we recommend or that should be avoided for figure generation.

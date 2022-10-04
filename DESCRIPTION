@@ -25,3 +25,7 @@ Imports:
     svglite,
     tibble,
     utils
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
