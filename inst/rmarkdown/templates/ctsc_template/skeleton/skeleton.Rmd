@@ -1,6 +1,6 @@
 ---
 title: "DRAFT -- TECHNICAL MEMORANDUM"
-subtitle: "TO: <Investigator> <br> FROM: <Analysts> <br> SUBJECT: <Project Title> <br> DATE: `r Sys.Date()` <br> <hr />"
+subtitle: "<b>TO: </b> Investigator <br> <b> FROM: </b> Analyst <br> <b> SUBJECT:</b> Project Title <br> <b>DATE:</b> `r Sys.Date()` <br> <hr />"
 output: 
   bookdown::html_document2:
     number_sections: TRUE
@@ -39,14 +39,12 @@ h3.subtitle { /* Header 3 Subtitle */
 
 </style>
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(fig.width=12, fig.height=8,
                       echo=FALSE, warning=FALSE, message=FALSE)
 
-#list default packages to load, add additional packages as necessary
-my_packages <- c("tidyverse", "kableExtra", "knitr")
-lapply(my_packages, library, character.only = TRUE)
+# load packages
+# pacman::p_load()
 
 # update 'asis' chunk to allow inline code
 knit_engines$set(asis = function(options) {
@@ -57,6 +55,11 @@ knit_engines$set(asis = function(options) {
 internal <- TRUE
 ```
 
+```{r, echo=FALSE, eval=TRUE}
+htmltools::img(src = knitr::image_uri(file.path("CTSC_Stacked.jpg")), 
+               alt = 'logo', height = "120", width = "140",
+               style = 'position:absolute; top:0; right:0; padding:10px;')
+```
 
 ```{r sysinfo, include=internal}
 # displays R version, platform, base packages, attached packages, and packages
