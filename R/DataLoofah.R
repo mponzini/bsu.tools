@@ -1,6 +1,18 @@
 # load libraries and install if necessary #
-pacman::p_load(dplyr, tibble, ggplot2, arsenal, openxlsx, readxl, DT, svglite,
-               slickR, haven, shiny)
+# pacman::p_load(dplyr, tibble, ggplot2, arsenal, openxlsx, readxl, DT, svglite,
+#                slickR, haven, shiny)
+
+#' @import dplyr
+#' @import tibble
+#' @import ggplot2
+#' @import arsenal
+#' @import openxlsx
+#' @import readxl
+#' @import DT
+#' @import svglite
+#' @import slickR
+#' @import haven
+#' @import shiny
 
 # options(shiny.maxRequestSize = 30*1024^2)
 # runApp(paste0(getwd(),"/ShinyApp"))
