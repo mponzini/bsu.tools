@@ -1,6 +1,8 @@
 ---
 title: "Rmd-options-vignette"
-output: rmarkdown::html_vignette
+output: 
+  bookdown::html_document2: 
+  base_format: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Rmd-options-vignette}
   %\VignetteEngine{knitr::rmarkdown}

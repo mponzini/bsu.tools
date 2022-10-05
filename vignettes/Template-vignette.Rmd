@@ -1,6 +1,8 @@
 ---
 title: "Template-vignette"
-output: rmarkdown::html_vignette
+output: 
+  bookdown::html_document2: 
+  base_format: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Template-vignette}
   %\VignetteEngine{knitr::rmarkdown}
@@ -15,7 +17,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-library(TestPackage)
+# library(TestPackage)
 ```
 
 # Introduction  
