@@ -77,9 +77,17 @@ sjPlot::tab_model(lm(Sepal.Length ~ Species, data = iris),
 
 # Figures  
 
-As of this writing I am not aware of any figure packages that should be avoided. Each figure should be in its own chunk with a figure caption that begins with `(\\#fig:fig-label)` when being printed. Figure \@ref(fig:example-fig) is an example.
+As of this writing I am not aware of any figure packages that should be avoided. Each figure should be in its own chunk with a figure caption when being printed. As with the `kableExtra` and `tableby` tables, reference the figures using the chunk name (`\@ref(fig:chunk-name)`). Figure \@ref(fig:example-fig) is an example.
 
-```{r, fig.cap="(\\#fig:example-fig) Boxplot of sepal length by species."}
+```{r example-fig, fig.cap="Boxplot of sepal length by species."}
+ggplot(iris, aes(x = Species, y = Sepal.Length)) +
+  geom_boxplot() +
+  theme_bw()
+```
+
+As with the `tableby` table, including `(\\#fig:fig-label)` at the beginning of the figure caption will result in double numbering, as shown in Figure \@ref(fig:example-fig2).
+
+```{r, fig.cap="(\\#fig:example-fig2) Boxplot of sepal length by species."}
 ggplot(iris, aes(x = Species, y = Sepal.Length)) +
   geom_boxplot() +
   theme_bw()
