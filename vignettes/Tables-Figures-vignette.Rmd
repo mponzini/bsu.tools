@@ -32,11 +32,11 @@ There are three packages I recommend for generating tables: `kableExtra`, `arsen
 * `tableby` from the `arsenal` package for creating summary tables.
 * `tab_model` from the `sjPlot` package for creating HTML tables with model results.  
 
-We are currently aware of two packages that should be avoided for table generation when using the template: `table1` and `DT`. The tables that result from these packages do not work with the auto-numbering and cross-referencing functionality of `bookdown`.
+We are currently aware of two packages that should be avoided for table generation when using the template: `table1` and `DT`. The tables that result from these packages do not work with the auto-numbering and cross-referencing functionality of [bookdown](https://bookdown.org/yihui/rmarkdown-cookbook/cross-ref.html).
 
 ## kableExtra  
 
-Use `kable(data.frame)` or pipe a data frame into `kable` to create a table using `kableExtra`. To cross-reference a `kableExrta` table, reference the chunk name (`@\ref(tab:chunk-name)`). An example is shown in Table \@ref(tab:kableextra-table). For more information on using and modifying tables with kableExtra see their [vignette](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html). 
+Use `kable(data.frame)` or pipe a data frame into `kable` to create a table using `kableExtra`. To cross-reference a `kableExrta` table, reference the chunk name (`\@ref(tab:chunk-name)`). An example is shown in Table \@ref(tab:kableextra-table). For more information on using and modifying tables with kableExtra see their [vignette](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html). 
 
 ```{r kableextra-table}
 iris %>%
