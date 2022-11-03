@@ -258,7 +258,7 @@ DataLoofah <- function(...){
     })
 
     dat_chr_table <- reactive({
-      if((!is.null(data_chr_summ()))){
+      if((!is.null(data_chr_summ())) && ncol(data_chr_summ()) > 0){
         tableby(~., data = data_chr_summ(), test = FALSE,
                 cat.stats = c('countpct', 'Nmiss'))
       }
@@ -271,7 +271,7 @@ DataLoofah <- function(...){
     })
 
     chr_table <- reactive({
-      if((!is.null(data_chr_summ()))){
+      if((!is.null(data_chr_summ())) && ncol(data_chr_summ()) > 0){
         tmp <- summary(dat_chr_table())$object$Overall %>%
           filter(Overall != "") %>%
           rowwise() %>%
@@ -310,7 +310,17 @@ DataLoofah <- function(...){
             " or character values with typos/spelling differences between similar",
             " responses (e.g. Male, male, m, M)."
           )
+        } else if(length(chr_vars()) > 0 & length(chr_vars_check) == 0){
+          text <- paste0(
+            "There are no additional character variables to review."
+          )
+        } else if((!is.null(chr_vars())) && length(chr_vars()) == 0){
+          text <-  paste0("There are no character variables.")
         }
+        # text <- paste0("Length chr_vars_check = ", length(chr_vars_check),
+        #                ". Length chr_vars = ", length(chr_vars()))
+      } else{
+        text <- paste0("")
       }
       text
     })
@@ -335,7 +345,7 @@ DataLoofah <- function(...){
     # Categorical Variables Figures tab #
     #####################################
     chr_plots <- reactive({
-      if((!is.null(data_chr_summ()))){
+      if((!is.null(data_chr_summ())) && ncol(data_chr_summ()) > 0){
         tmp_chr_plots <- vector(mode = 'list', length = ncol(data_chr_summ()))
 
         withProgress(message = "Creating Figures", value = 0, {
@@ -399,7 +409,7 @@ DataLoofah <- function(...){
     })
 
     dat_num_table <- reactive({
-      if((!is.null(dat_num()))){
+      if((!is.null(dat_num())) && ncol(dat_num()) > 0){
         tableby(~., data = dat_num(), test = FALSE,
                 numeric.stats = c('meansd', 'medianq1q3', 'range', 'Nmiss'))
       }
@@ -459,7 +469,7 @@ DataLoofah <- function(...){
     # Numeric Variables Figures tab #
     #################################
     num_plots <- reactive({
-      if((!is.null(dat_num()))){
+      if((!is.null(dat_num())) && ncol(dat_num()) > 0){
         tmp_num_plots <- vector(mode = 'list', length = ncol(dat_num()))
 
         withProgress(message = "Creating Figures", value = 0, {
