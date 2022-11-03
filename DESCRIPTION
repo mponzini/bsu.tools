@@ -30,7 +30,9 @@ Imports:
     utils
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat (>= 3.0.0)
 VignetteBuilder: knitr
 URL: https://github.com/mponzini/TestPackage
 BugReports: https://github.com/mponzini/TestPackage/issues
+Config/testthat/edition: 3
