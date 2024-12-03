@@ -1,15 +1,16 @@
-Package: TestPackage
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9001
+Package: bsu.tools
+Title: Package for UC Davis Biostatistics Support Unit
+Version: 0.0.1
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+    person("Matthew", "Ponzini", , "mdponzini@ucdavis.edu", role = c("aut", "cre"))
+Description: R package for UC Davis Biostatistics Support Unit. Package contains
+    Rmd templates along with internal functions/wrappers to facilitate 
+    reproducible analyses.
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.1
+RoxygenNote: 7.3.2
 Imports: 
     arsenal,
     bookdown,
@@ -33,6 +34,6 @@ Suggests:
     rmarkdown,
     testthat (>= 3.0.0)
 VignetteBuilder: knitr
-URL: https://github.com/mponzini/TestPackage
-BugReports: https://github.com/mponzini/TestPackage/issues
+URL: https://github.com/mponzini/bsu.tools
+BugReports: https://github.com/mponzini/bsu.tools/issues
 Config/testthat/edition: 3
