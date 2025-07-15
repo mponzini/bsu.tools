@@ -1,6 +1,6 @@
 Package: bsu.tools
 Title: Package for UC Davis Biostatistics Support Unit
-Version: 0.0.1.9000
+Version: 0.0.1.9001
 Authors@R: 
     person("Matthew", "Ponzini", , "mdponzini@ucdavis.edu", role = c("aut", "cre"))
 Description: R package for UC Davis Biostatistics Support Unit. Package contains

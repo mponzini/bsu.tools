@@ -5,6 +5,7 @@ format:
   html:
     number-sections: true
     toc: true
+    toc-location: left
     toc-depth: 3
     embed-resources: true
 ---
@@ -120,8 +121,8 @@ This study...
 #| label: tbl-demo
 #| tbl-cap: "Example Table Caption"
 # demo table by piping data into kable()
-iris %>%
-  group_by(Species) %>%
+iris |>
+  group_by(Species) |>
   summarize(Sepal_Length = paste0(round(mean(Sepal.Length), 2), " \u00B1 ", 
                                   round(sd(Sepal.Length), 2)),
             Sepal_Width = paste0(round(mean(Sepal.Width), 2), " \u00B1 ", 
@@ -129,9 +130,9 @@ iris %>%
             Petal_Length = paste0(round(mean(Petal.Length), 2), " \u00B1 ", 
                                   round(sd(Petal.Length), 2)),
             Petal_Width = paste0(round(mean(Petal.Width), 2), " \u00B1 ", 
-                                  round(sd(Petal.Width), 2))) %>%
+                                  round(sd(Petal.Width), 2))) |>
   kable(caption = "Summary of Sepal and Petal Lengths and Widths by Species",
-        col.names = c()) %>%
+        col.names = c()) |>
   kable_styling()
 ```
 
@@ -140,10 +141,10 @@ iris %>%
 #| fig-cap: "Figure Caption"
 #| eval: false
 
-iris %>%
+iris |>
   pivot_longer(cols = c(Sepal.Length, Sepal.Width, Petal.Length, 
                         Petal.Width),
-               values_to = "Measurements", names_to = "Part") %>%
+               values_to = "Measurements", names_to = "Part") |>
   ggplot(aes(x = Part, y = Measurements, color = Species)) +
   geom_boxplot() + 
   labs(y = "Length or Width (cm)", x = "Plant Part")
