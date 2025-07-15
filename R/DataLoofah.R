@@ -221,25 +221,25 @@ DataLoofah <- function(...){
 
     data_chr <- reactive({
       if((!is.null(data()))){
-        data() %>%
+        data() |>
           dplyr::select(any_of(chr_vars()))
       }
     })
 
     data_chr_distinct <- reactive({
       if((!is.null(data_chr()))){
-        data_chr() %>%
-          summarise_all(n_distinct) %>%
-          t() %>%
-          as.data.frame() %>%
-          rownames_to_column(var = "Variable") %>%
+        data_chr() |>
+          summarise_all(n_distinct) |>
+          t() |>
+          as.data.frame() |>
+          rownames_to_column(var = "Variable") |>
           rename("N_Distinct" = V1)
       }
     })
 
     data_chr_summarize <- reactive({
       if((!is.null(data_chr_distinct()))){
-        data_chr_distinct() %>%
+        data_chr_distinct() |>
           filter(N_Distinct <= 20)
       }
     })
@@ -252,7 +252,7 @@ DataLoofah <- function(...){
 
     data_chr_summ <- reactive({
       if((!is.null(data_chr_summarize()))){
-        data() %>%
+        data() |>
           dplyr::select(any_of(chr_vars_summ()))
       }
     })
@@ -272,19 +272,19 @@ DataLoofah <- function(...){
 
     chr_table <- reactive({
       if((!is.null(data_chr_summ())) && ncol(data_chr_summ()) > 0){
-        tmp <- summary(dat_chr_table())$object$Overall %>%
-          filter(Overall != "") %>%
-          rowwise() %>%
+        tmp <- summary(dat_chr_table())$object$Overall |>
+          filter(Overall != "") |>
+          rowwise() |>
           mutate(
             Test = case_when(
               label != "N-Miss" ~ paste0(Overall[1], " (", round(Overall[2], 2),
                                          "%)"),
               label == "N-Miss" ~ paste0(Overall[1])
             )
-          ) %>%
-          ungroup() %>%
-          mutate("Variable" = "variable") %>%
-          rename("Category" = "label") %>%
+          ) |>
+          ungroup() |>
+          mutate("Variable" = "variable") |>
+          rename("Category" = "label") |>
           dplyr::select(Variable, variable, Category, Test)
 
         colnames(tmp)[colnames(tmp) == "Test"] <- overall_label()
@@ -294,7 +294,7 @@ DataLoofah <- function(...){
 
     dat_chr_distinct_check <- reactive({
       if((!is.null(data_chr_distinct()))){
-        data_chr_distinct() %>%
+        data_chr_distinct() |>
           filter(N_Distinct > 20)
       }
     })
@@ -334,7 +334,7 @@ DataLoofah <- function(...){
                                               targets=c(0, 1))),
                        rowGroup = list(dataSrc = 1),
                        pageLength = 20)
-        ) %>%
+        ) |>
           formatStyle(names(chr_table()), textAlign = 'center')
       }
     })
@@ -403,7 +403,7 @@ DataLoofah <- function(...){
 
     dat_num <- reactive({
       if((!is.null(data()))){
-        data() %>%
+        data() |>
           dplyr::select(any_of(num_vars()))
       }
     })
@@ -417,9 +417,9 @@ DataLoofah <- function(...){
 
     num_table <- reactive({
       if((!is.null(dat_num_table()))){
-        tmp2 <- summary(dat_num_table())$object$Overall %>%
-          filter(Overall != "") %>%
-          rowwise() %>%
+        tmp2 <- summary(dat_num_table())$object$Overall |>
+          filter(Overall != "") |>
+          rowwise() |>
           mutate(
             Test = case_when(
               label == "Mean (SD)" ~ paste0(format(round(Overall[1], 2), nsmall = 2),
@@ -439,10 +439,10 @@ DataLoofah <- function(...){
                                         format(round(Overall[2], 2), nsmall = 2)),
               label == "N-Miss" ~ paste0(Overall[1])
             )
-          ) %>%
-          ungroup() %>%
-          mutate("Variable" = variable) %>%
-          rename("Summary" = "label") %>%
+          ) |>
+          ungroup() |>
+          mutate("Variable" = variable) |>
+          rename("Summary" = "label") |>
           dplyr::select(Variable, variable, Summary, Test)
 
         colnames(tmp2)[colnames(tmp2) == 'Test'] <- overall_label()
@@ -459,7 +459,7 @@ DataLoofah <- function(...){
                                               targets=c(0, 1))),
                        rowGroup = list(dataSrc = 1),
                        pageLength = 12)
-        ) %>%
+        ) |>
           formatStyle(names(num_table()), textAlign = 'center')
       }
     })
