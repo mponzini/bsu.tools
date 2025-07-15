@@ -73,7 +73,7 @@ DataLoofah <- function(...){
           fluidRow(
             column(
               11,
-              DT::dataTableOutput("info")
+              shiny::dataTableOutput("info")
             )
           ),
 
@@ -94,7 +94,7 @@ DataLoofah <- function(...){
         fluidRow(
           column(
             12,
-            DT::dataTableOutput("chrTable")
+            shiny::dataTableOutput("chrTable")
           )
 
         ),
@@ -122,7 +122,7 @@ DataLoofah <- function(...){
 
           column(
             12,
-            DT::dataTableOutput("numTable")
+            shiny::dataTableOutput("numTable")
           )
 
         )
@@ -208,7 +208,7 @@ DataLoofah <- function(...){
     })
 
 
-    output$info <- DT::renderDataTable({
+    output$info <- shiny::renderDataTable({
       DT::datatable(data_class())
     })
 
@@ -325,7 +325,7 @@ DataLoofah <- function(...){
       text
     })
 
-    output$chrTable <- DT::renderDataTable({
+    output$chrTable <- shiny::renderDataTable({
       if((!is.null(chr_table()))){
         DT::datatable(
           chr_table(), rownames = FALSE,
@@ -450,7 +450,7 @@ DataLoofah <- function(...){
       }
     })
 
-    output$numTable <- DT::renderDataTable({
+    output$numTable <- shiny::renderDataTable({
       if((!is.null(num_table()))){
         DT::datatable(
           num_table(), rownames = FALSE,

@@ -1,0 +1,150 @@
+---
+title: "DRAFT -- TECHNICAL MEMORANDUM"
+subtitle: "<b>TO: </b> Investigator <br> <b> FROM: </b> Analyst <br> <b> SUBJECT:</b> Project Title <br> <b>DATE:</b> `r paste0(' ', Sys.Date())`"
+format: 
+  html:
+    number-sections: true
+    toc: true
+    toc-depth: 3
+    embed-resources: true
+---
+
+<style type="text/css">
+
+h1.title {
+  font-size: 24px;
+  font-weight: bolder;
+}
+
+h1 { /* Header 1 */
+  font-size: 16px;
+  font-weight: bold;
+}
+
+h2 { /* Header 2 */
+  font-size: 14px;
+  font-weight: bold;
+}
+
+h3 { /* Header 3 */
+  font-size: 13px;
+  font-weight: bold;
+}
+
+h3.subtitle { /* Header 3 Subtitle */
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 150%;
+}
+
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  fig.width=12, 
+  fig.height=8,
+  echo=FALSE, 
+  warning=FALSE, 
+  message=FALSE
+)
+
+# load packages
+# pacman::p_load()
+
+# update 'asis' chunk to allow inline code
+knitr::knit_engines$set(asis = function(options) {
+  if (options$echo && options$eval) knitr::knit_child(text = options$code)
+})
+  
+
+internal <- TRUE
+```
+
+<hr style="height:1px;color:black;background-color:black">
+
+```{r}
+#| label: sess-info
+#| include: !expr internal
+
+# displays R version, platform, base packages, attached packages, and packages
+# loaded via a namespace
+sessionInfo()
+```
+
+# STUDY DESCRIPTION/OBJECTIVE
+
+This study...
+
+*Aim 1*:
+
+*Aim 2*:
+
+*Aim 3*:
+
+
+# DATA PROCESSING
+
+```{r}
+#| label: data-import
+#| include: false
+
+# if data import file(s) is (are) large, consider caching the data
+#   see https://bookdown.org/yihui/rmarkdown-cookbook/cache.html for more 
+#   information
+
+```
+
+```{r}
+#| label: data-processing
+#| include: false
+
+```
+
+# STATISTICAL ANALYSIS
+
+```{r data-analysis, include=internal}
+# if analysis is computationally intensive there are a few options.
+#   1) run analysis and save all results to load here
+#   2) run analysis here and set chunk option cache=TRUE. A cached chunk will
+#      automatically load output and objects from a previous run.
+#         see https://bookdown.org/yihui/rmarkdown-cookbook/cache.html for more 
+#         information
+
+```
+
+# RESULTS
+
+## Subsection  
+
+```{r}
+#| label: tbl-demo
+#| tbl-cap: "Example Table Caption"
+# demo table by piping data into kable()
+iris %>%
+  group_by(Species) %>%
+  summarize(Sepal_Length = paste0(round(mean(Sepal.Length), 2), " \u00B1 ", 
+                                  round(sd(Sepal.Length), 2)),
+            Sepal_Width = paste0(round(mean(Sepal.Width), 2), " \u00B1 ", 
+                                 round(sd(Sepal.Width), 2)),
+            Petal_Length = paste0(round(mean(Petal.Length), 2), " \u00B1 ", 
+                                  round(sd(Petal.Length), 2)),
+            Petal_Width = paste0(round(mean(Petal.Width), 2), " \u00B1 ", 
+                                  round(sd(Petal.Width), 2))) %>%
+  kable(caption = "Summary of Sepal and Petal Lengths and Widths by Species",
+        col.names = c()) %>%
+  kable_styling()
+```
+
+```{r}
+#| label: fig-demo
+#| fig-cap: "Figure Caption"
+#| eval: false
+
+iris %>%
+  pivot_longer(cols = c(Sepal.Length, Sepal.Width, Petal.Length, 
+                        Petal.Width),
+               values_to = "Measurements", names_to = "Part") %>%
+  ggplot(aes(x = Part, y = Measurements, color = Species)) +
+  geom_boxplot() + 
+  labs(y = "Length or Width (cm)", x = "Plant Part")
+```
