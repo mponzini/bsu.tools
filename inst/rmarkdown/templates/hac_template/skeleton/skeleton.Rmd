@@ -1,13 +1,7 @@
 ---
 title: "DRAFT -- TECHNICAL MEMORANDUM"
 subtitle: "<b>TO: </b> Investigator <br> <b> FROM: </b> Analyst <br> <b> SUBJECT:</b> Project Title <br> <b>DATE:</b> `r paste0(' ', Sys.Date())`"
-output: 
-  bookdown::html_document2:
-    css: "template_css.css"
-    number_sections: TRUE
-    toc: TRUE
-    toc_float: TRUE
-    toc_depth: 3
+output: bsu.tools::html_bsu
 ---
 
 ```{r setup, include=FALSE}
