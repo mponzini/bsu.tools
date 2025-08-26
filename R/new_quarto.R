@@ -10,7 +10,7 @@
 new_quarto <- function(
     filename = NULL,
     path = here::here(),
-    gist = "default_quarto"
+    gist = "no_logo_quarto"
 ) {
   # Validate path
   if (is.null(path) || !dir.exists(path)) {
@@ -51,7 +51,7 @@ new_quarto <- function(
   # Remove .qmd if accidentally typed
   gist <- stringr::str_replace_all(gist, '.qmd$', '')
   # Validate gist:
-  gist_options <- c("default_quarto", "ctsc_quarto", "hac_quarto",
+  gist_options <- c("ctsc_quarto", "hac_quarto",
                     "no_logo_quarto")
   if (!(gist %in% gist_options)) {
     stop("gist must be one of the following: ", and::or(gist_options))

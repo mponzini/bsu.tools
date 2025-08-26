@@ -2,42 +2,12 @@
 title: "DRAFT -- TECHNICAL MEMORANDUM"
 subtitle: "<b>TO: </b> Investigator <br> <b> FROM: </b> Analyst <br> <b> SUBJECT:</b> Project Title <br> <b>DATE:</b> `r paste0(' ', Sys.Date())`"
 output: 
-  bookdown::html_document2:
+  bsu.tools::html_bsu:
     number_sections: TRUE
     toc: TRUE
     toc_float: TRUE
     toc_depth: 3
 ---
-
-<style type="text/css">
-
-h1.title {
-  font-size: 24px;
-  font-weight: bolder;
-}
-
-h1 { /* Header 1 */
-  font-size: 16px;
-  font-weight: bold;
-}
-
-h2 { /* Header 2 */
-  font-size: 14px;
-  font-weight: bold;
-}
-
-h3 { /* Header 3 */
-  font-size: 13px;
-  font-weight: bold;
-}
-
-h3.subtitle { /* Header 3 Subtitle */
-  font-size: 20px;
-  font-weight: normal;
-  line-height: 150%;
-}
-
-</style>
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(fig.width=12, fig.height=8,
