@@ -8,9 +8,6 @@ html_bsu <- function(...) {
 
   bookdown::html_document2(
     css = css_path,
-    number_sections = TRUE,
-    toc = TRUE,
-    toc_float = TRUE,
-    toc_depth = 3
+    ...
   )
 }

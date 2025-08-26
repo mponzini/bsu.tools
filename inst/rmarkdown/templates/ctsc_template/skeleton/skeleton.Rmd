@@ -1,7 +1,12 @@
 ---
 title: "DRAFT -- TECHNICAL MEMORANDUM"
 subtitle: "<b>TO: </b> Investigator <br> <b> FROM: </b> Analyst <br> <b> SUBJECT:</b> Project Title <br> <b>DATE:</b> `r paste0(' ', Sys.Date())`"
-output: bsu.tools::html_bsu
+output: 
+  bsu.tools::html_bsu:
+    number_sections: TRUE
+    toc: TRUE
+    toc_float: TRUE
+    toc_depth: 3
 ---
 
 ```{r setup, include=FALSE}
