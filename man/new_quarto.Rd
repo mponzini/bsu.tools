@@ -4,7 +4,7 @@
 \alias{new_quarto}
 \title{Create a new Quarto Document from Template}
 \usage{
-new_quarto(filename = NULL, path = here::here(), gist = "default_quarto")
+new_quarto(filename = NULL, path = here::here(), gist = "no_logo_quarto")
 }
 \arguments{
 \item{filename}{Character string. The name of the file without the '.qmd' extension.

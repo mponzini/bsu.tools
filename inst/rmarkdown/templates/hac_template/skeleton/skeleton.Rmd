@@ -56,9 +56,20 @@ internal <- TRUE
 ```
 
 ```{r, echo=FALSE, eval=TRUE}
-htmltools::img(src = knitr::image_uri(file.path("hac-logo.png")), 
-               alt = 'logo', height = "120", width = "140",
-               style = 'position:absolute; top:0; right:0; padding:10px;')
+knitr::raw_html(
+  htmltools::img(
+    src = knitr::image_uri(
+        file.path(
+          system.file(
+            "logos/hac-logo.png",
+            package = 'bsu.tools'
+          )
+        )
+    ), 
+    alt = 'logo', height = "120", width = "140",
+    style = 'position:absolute; top:0; right:0; padding:10px;'
+  )
+)
 ```
 
 <hr style="height:1px;color:black;background-color:black">
