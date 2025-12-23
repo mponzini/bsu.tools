@@ -1,0 +1,94 @@
+---
+title: "Tables-Figures-vignette"
+output: 
+  bookdown::html_document2: 
+  base_format: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Tables-Figures-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, include=FALSE}
+library(kableExtra)
+library(dplyr)
+library(arsenal)
+library(sjPlot)
+library(ggplot2)
+```
+
+# Tables
+
+There are three packages I recommend for generating tables: `kableExtra`, `arsenal`, and `sjPlot`.
+
+* `kable` from the `kableExtra` package for printing tables from data frames.
+* `tableby` from the `arsenal` package for creating summary tables.
+* `tab_model` from the `sjPlot` package for creating HTML tables with model results.  
+
+We are currently aware of two packages that should be avoided for table generation when using the template: `table1` and `DT`. The tables that result from these packages do not work with the auto-numbering and cross-referencing functionality of [bookdown](https://bookdown.org/yihui/rmarkdown-cookbook/cross-ref.html).
+
+## kableExtra  
+
+Use `kable(data.frame)` or pipe a data frame into `kable` to create a table using `kableExtra`. To cross-reference a `kableExrta` table, reference the chunk name (`\@ref(tab:chunk-name)`). An example is shown in Table \@ref(tab:kableextra-table). For more information on using and modifying tables with kableExtra see their [vignette](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html). 
+
+```{r kableextra-table}
+iris %>%
+  group_by(Species) %>%
+  summarise("Mean (SD)" = paste0(round(mean(Sepal.Length), 3), " (", 
+                                 round(sd(Sepal.Length), 3), ")"),
+            "Range" = paste0(round(min(Sepal.Length), 3), " - ", 
+                             round(max(Sepal.Length), 3))) %>%
+  t() %>%
+  kable(caption = "Summary of sepal length by species.") %>%
+  kable_styling()
+```
+
+## arsenal  
+
+Create a summary table using `arsenal::tableby`. Make sure to set the chunk option `results='asis'` for the results to look nice within the report. To cross-reference a `tableby` object, reference the chunk name (`\@ref(tab:chunk-name)`). An example is show in Table \@ref(tab:arsenal-table). For more information on using `tableby` see their [vignette](https://cran.r-project.org/web/packages/arsenal/vignettes/tableby.html).
+
+```{r arsenal-table, results='asis'}
+summary(arsenal::tableby(Species ~ Sepal.Length, data = iris),
+        title = "Summary of sepal lengths by species.")
+```
+
+The `tableby` vignette says to add `(\\#tab:table-label)` at the beginning of the title in order to reference with `bookdown` but I've found this causes the table to be numbered twice, as seen in table \@ref(tab:tableby-table).
+
+```{r, results='asis'}
+summary(arsenal::tableby(Species ~ Sepal.Length, data = iris),
+        title = "(\\#tab:tableby-table) Summary of sepal lengths by species.")
+```
+
+## sjPlot  
+
+The `tab_model` function from the `sjPlot` package will create an HTML summary table of a model object. To cross-reference a `tab_model` table, add `(\\#tab:table-label)` at the beginning of the title. An example is shown in Table \@ref(tab:sjplot-table). For more information on using `tab_model` see their [vignette](https://strengejacke.github.io/sjPlot/articles/tab_model_estimates.html).
+
+```{r}
+sjPlot::tab_model(lm(Sepal.Length ~ Species, data = iris),
+                  title = "(\\#tab:sjplot-table) Results of linear regression model.")
+```
+
+# Figures  
+
+As of this writing I am not aware of any figure packages that should be avoided. Each figure should be in its own chunk with a figure caption when being printed. As with the `kableExtra` and `tableby` tables, reference the figures using the chunk name (`\@ref(fig:chunk-name)`). Figure \@ref(fig:example-fig) is an example.
+
+```{r example-fig, fig.cap="Boxplot of sepal length by species."}
+ggplot(iris, aes(x = Species, y = Sepal.Length)) +
+  geom_boxplot() +
+  theme_bw()
+```
+
+As with the `tableby` table, including `(\\#fig:fig-label)` at the beginning of the figure caption will result in double numbering, as shown in Figure \@ref(fig:example-fig2).
+
+```{r, fig.cap="(\\#fig:example-fig2) Boxplot of sepal length by species."}
+ggplot(iris, aes(x = Species, y = Sepal.Length)) +
+  geom_boxplot() +
+  theme_bw()
+```
