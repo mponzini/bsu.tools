@@ -10,8 +10,10 @@
 new_quarto <- function(
     filename = NULL,
     path = here::here(),
-    gist = "no_logo_quarto"
+    gist = c("no_logo_quarto", "ctsc_quarto", "hac_quarto")
 ) {
+
+  gist <- match.arg(gist)
   # Validate path
   if (is.null(path) || !dir.exists(path)) {
     stop("Invalid `path`. Please enter a valid project directory.")
@@ -47,15 +49,6 @@ new_quarto <- function(
     stop(sprintf("%s.qmd already exists in the specified path.", filename))
   }
 
-
-  # Remove .qmd if accidentally typed
-  gist <- stringr::str_replace_all(gist, '.qmd$', '')
-  # Validate gist:
-  gist_options <- c("ctsc_quarto", "hac_quarto",
-                    "no_logo_quarto")
-  if (!(gist %in% gist_options)) {
-    stop("gist must be one of the following: ", and::or(gist_options))
-  }
   # Write the Quarto file based on template
   gist <- paste0("gists/", gist, ".qmd")
   template_path <- system.file(gist, package = 'bsu.tools')
