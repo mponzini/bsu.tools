@@ -1,0 +1,11 @@
+pandoc: 3.1.11
+pkgdown: 2.2.0
+pkgdown_sha: ~
+articles:
+  Rmd-options-vignette: Rmd-options-vignette.html
+  Tables-Figures-vignette: Tables-Figures-vignette.html
+  Template-vignette: Template-vignette.html
+last_built: 2025-12-23T23:56Z
+urls:
+  reference: https://mponzini.github.io/bsu.tools/reference
+  article: https://mponzini.github.io/bsu.tools/articles
