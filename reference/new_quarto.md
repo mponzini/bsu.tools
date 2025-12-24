@@ -5,7 +5,11 @@ Create a new Quarto Document from Template
 ## Usage
 
 ``` r
-new_quarto(filename = NULL, path = here::here(), gist = "no_logo_quarto")
+new_quarto(
+  filename = NULL,
+  path = here::here(),
+  gist = c("no_logo_quarto", "ctsc_quarto", "hac_quarto")
+)
 ```
 
 ## Arguments
