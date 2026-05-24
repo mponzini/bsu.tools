@@ -1,0 +1,167 @@
+---
+title: "Project Details"
+subtitle: "`r paste0('Date: ', Sys.Date())`"
+format:
+  html:
+    number-sections: true
+    toc: true
+    toc-location: left
+    toc-depth: 3
+    embed-resources: true
+---
+
+<style type="text/css">
+
+h1.title {
+  font-size: 24px;
+  font-weight: bolder;
+}
+
+h1 { /* Header 1 */
+  font-size: 16px;
+  font-weight: bold;
+}
+
+h2 { /* Header 2 */
+  font-size: 14px;
+  font-weight: bold;
+}
+
+h3 { /* Header 3 */
+  font-size: 13px;
+  font-weight: bold;
+}
+
+h3.subtitle { /* Header 3 Subtitle */
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 150%;
+}
+
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  fig.width=12,
+  fig.height=8,
+  echo=FALSE,
+  warning=FALSE,
+  message=FALSE
+)
+
+# load packages
+# pacman::p_load()
+
+# update 'asis' chunk to allow inline code
+knitr::knit_engines$set(asis = function(options) {
+  if (options$echo && options$eval) knitr::knit_child(text = options$code)
+})
+
+```
+
+<hr style="height:1px;color:black;background-color:black">
+
+# INVESTIGATOR
+
+**Name:**
+
+**Department:**
+
+**Contact:**
+
+# RESEARCH QUESTION
+
+Describe the research question(s) that this project aims to address.
+
+# HYPOTHESIS
+
+State the hypothesis or hypotheses for this research project.
+
+# STATISTICAL ANALYSIS PLAN
+
+Provide a brief overview of the statistical methods and approaches that will be used to analyze the data.
+
+## Primary Analysis
+
+Describe the primary statistical analysis methods.
+
+## Secondary Analysis
+
+Describe any secondary or exploratory analyses.
+
+## Sample Size Considerations
+
+If applicable, describe sample size calculations or power analysis.
+
+# TIMELINE
+
+```{r}
+#| label: tbl-timeline
+#| tbl-cap: "Project Timeline"
+
+# Example timeline table
+timeline <- data.frame(
+  Milestone = c("Project Kickoff",
+                "Data Collection Complete",
+                "Data Analysis Complete",
+                "Draft Report",
+                "Final Report"),
+  Target_Date = c("YYYY-MM-DD",
+                  "YYYY-MM-DD",
+                  "YYYY-MM-DD",
+                  "YYYY-MM-DD",
+                  "YYYY-MM-DD"),
+  Status = c("Not Started",
+             "Not Started",
+             "Not Started",
+             "Not Started",
+             "Not Started")
+)
+
+kable(timeline,
+      col.names = c("Milestone", "Target Date", "Status")) |>
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+# PROJECT OUTCOME
+
+Describe the expected outcome or deliverables for this project.
+
+## Expected Deliverables
+
+- Item 1
+- Item 2
+- Item 3
+
+## Dissemination Plan
+
+Describe plans for publication, presentation, or other dissemination of results.
+
+# PROJECT FILES
+
+```{r}
+#| label: tbl-project-files
+#| tbl-cap: "Project Files and Locations"
+
+# Table documenting project files and their locations
+project_files <- data.frame(
+  Project_File = c("Data file name",
+                   "Analysis script name",
+                   "Results file name"),
+  Location = c("/path/to/data/file",
+               "/path/to/analysis/script",
+               "/path/to/results/file")
+)
+
+kable(project_files,
+      col.names = c("Project File", "Location")) |>
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+## Data Dictionary
+
+If applicable, link to or describe the data dictionary for the project.
+
+# NOTES
+
+Additional notes or considerations for the project.

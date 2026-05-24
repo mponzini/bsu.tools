@@ -1,0 +1,62 @@
+---
+title: "How to create project details documentation"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{How to create project details documentation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(bsu.tools)
+```
+
+The `new_project_details()` function enables you to create a new Quarto document
+for documenting project details using a standardized template.
+
+## Function Arguments
+
+The function has two arguments:
+
+- **filename**: the name of your new file. If you forget the `.qmd` ending the
+function will automatically add it for you.
+- **path**: where should the file be created. Uses `here::here()` by default.
+
+## Template Sections
+
+The project details template includes the following sections:
+
+- **Investigator**: Information about the project investigator(s)
+- **Research Question**: Description of the research question(s)
+- **Hypothesis**: Statement of the project hypothesis or hypotheses
+- **Statistical Analysis Plan**: Overview of statistical methods including primary analysis, secondary analysis, and sample size considerations
+- **Timeline**: Table with project milestones and target dates
+- **Project Outcome**: Expected deliverables and dissemination plans
+- **Project Files**: Table documenting project files and their locations
+
+## Usage
+
+Simply call `new_project_details(filename = "project-name")` in the console to
+create and open your new project details document from the template.
+
+```{r, eval=FALSE}
+# Create a new project details document
+new_project_details(filename = "my-project-details")
+
+# Create in a specific directory
+new_project_details(filename = "my-project-details", path = "path/to/directory")
+```
+
+## Example Output
+
+The template generates an HTML document with a table of contents and all the
+structured sections needed to document your research project. The template
+includes example tables for the timeline and project files that can be customized
+to fit your specific needs.

@@ -1,0 +1,292 @@
+---
+title: "Project Closeout"
+subtitle: "`r paste0('Date: ', Sys.Date())`"
+format:
+  html:
+    number-sections: true
+    toc: true
+    toc-location: left
+    toc-depth: 3
+    embed-resources: true
+---
+
+<style type="text/css">
+
+h1.title {
+  font-size: 24px;
+  font-weight: bolder;
+}
+
+h1 { /* Header 1 */
+  font-size: 16px;
+  font-weight: bold;
+}
+
+h2 { /* Header 2 */
+  font-size: 14px;
+  font-weight: bold;
+}
+
+h3 { /* Header 3 */
+  font-size: 13px;
+  font-weight: bold;
+}
+
+h3.subtitle { /* Header 3 Subtitle */
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 150%;
+}
+
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  fig.width=12,
+  fig.height=8,
+  echo=FALSE,
+  warning=FALSE,
+  message=FALSE
+)
+
+# load packages
+# pacman::p_load()
+
+# update 'asis' chunk to allow inline code
+knitr::knit_engines$set(asis = function(options) {
+  if (options$echo && options$eval) knitr::knit_child(text = options$code)
+})
+
+```
+
+<hr style="height:1px;color:black;background-color:black">
+
+# PROJECT INFORMATION
+
+**Project Title:**
+
+**Principal Investigator:**
+
+**Biostatistician:**
+
+**Project Completion Date:**
+
+# PROJECT SUMMARY
+
+Provide a brief summary of the project, including the research question, methods used, and key findings.
+
+# FINAL DATA FILES
+
+```{r}
+#| label: tbl-data-files
+#| tbl-cap: "Final Data Files and Locations"
+
+# Table documenting final data files and their locations
+data_files <- data.frame(
+  File_Type = c("Raw Data",
+                "Raw Data",
+                "Processed Data",
+                "Processed Data",
+                "Analysis Dataset"),
+  File_Name = c("raw_data_file1.csv",
+                "raw_data_file2.csv",
+                "cleaned_data.csv",
+                "merged_data.csv",
+                "analysis_ready_data.rds"),
+  Location = c("/path/to/raw/data/",
+               "/path/to/raw/data/",
+               "/path/to/processed/data/",
+               "/path/to/processed/data/",
+               "/path/to/analysis/data/"),
+  Description = c("Original data received from source",
+                  "Additional data from secondary source",
+                  "Data after cleaning and validation",
+                  "Combined dataset from multiple sources",
+                  "Final dataset used for analysis")
+)
+
+kable(data_files,
+      col.names = c("File Type", "File Name", "Location", "Description")) |>
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                full_width = TRUE) |>
+  column_spec(4, width = "30%")
+```
+
+## Data Access and Archival
+
+**Data Storage Location:** Describe where the final data is stored (e.g., secure server, cloud storage, institutional repository).
+
+**Data Access:** Describe who has access to the data and any restrictions.
+
+**Retention Period:** Specify how long the data will be retained according to institutional policies.
+
+# CODE AND ANALYSIS FILES
+
+```{r}
+#| label: tbl-code-files
+#| tbl-cap: "Code and Analysis Files"
+
+# Table documenting code and analysis files
+code_files <- data.frame(
+  File_Type = c("Data Cleaning Script",
+                "Analysis Script",
+                "Figure Generation Script",
+                "Table Generation Script",
+                "Main Report"),
+  File_Name = c("01_data_cleaning.R",
+                "02_statistical_analysis.R",
+                "03_create_figures.R",
+                "04_create_tables.R",
+                "final_report.qmd"),
+  Location = c("/path/to/code/",
+               "/path/to/code/",
+               "/path/to/code/",
+               "/path/to/code/",
+               "/path/to/reports/"),
+  Description = c("Cleans and validates raw data",
+                  "Performs primary and secondary analyses",
+                  "Generates all figures for the report",
+                  "Creates summary and results tables",
+                  "Final Quarto report with all results")
+)
+
+kable(code_files,
+      col.names = c("File Type", "File Name", "Location", "Description")) |>
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                full_width = TRUE) |>
+  column_spec(4, width = "30%")
+```
+
+## Code Repository
+
+**Repository URL:** Link to version control repository (e.g., GitHub, GitLab) if applicable.
+
+**Repository Access:** Describe access permissions and any documentation included in the repository.
+
+# REPORTS AND OUTPUTS
+
+```{r}
+#| label: tbl-reports
+#| tbl-cap: "Final Reports and Outputs"
+
+# Table documenting reports and outputs
+reports <- data.frame(
+  Document_Type = c("Final Statistical Report",
+                    "Technical Report",
+                    "Executive Summary",
+                    "Supplementary Materials"),
+  File_Name = c("final_report.html",
+                "technical_appendix.pdf",
+                "executive_summary.docx",
+                "supplementary_materials.html"),
+  Location = c("/path/to/reports/",
+               "/path/to/reports/",
+               "/path/to/reports/",
+               "/path/to/reports/"),
+  Date = c("YYYY-MM-DD",
+           "YYYY-MM-DD",
+           "YYYY-MM-DD",
+           "YYYY-MM-DD")
+)
+
+kable(reports,
+      col.names = c("Document Type", "File Name", "Location", "Date")) |>
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+# PUBLICATIONS AND PRESENTATIONS
+
+## Manuscripts
+
+```{r}
+#| label: tbl-manuscripts
+#| tbl-cap: "Published or Submitted Manuscripts"
+
+# Table documenting manuscripts
+manuscripts <- data.frame(
+  Title = c("Manuscript Title 1",
+            "Manuscript Title 2"),
+  Authors = c("Last, F.M., Last, F.M., et al.",
+              "Last, F.M., Last, F.M., et al."),
+  Journal = c("Journal Name",
+              "Journal Name"),
+  Status = c("Published/Submitted/In Preparation",
+             "Published/Submitted/In Preparation"),
+  DOI_or_Link = c("DOI or URL",
+                  "DOI or URL")
+)
+
+kable(manuscripts,
+      col.names = c("Title", "Authors", "Journal", "Status", "DOI/Link")) |>
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                full_width = TRUE)
+```
+
+## Conference Presentations
+
+```{r}
+#| label: tbl-presentations
+#| tbl-cap: "Conference Presentations"
+
+# Table documenting conference presentations
+presentations <- data.frame(
+  Title = c("Presentation Title 1"),
+  Presenters = c("Presenter Names"),
+  Conference = c("Conference Name"),
+  Date = c("YYYY-MM-DD"),
+  Type = c("Oral/Poster")
+)
+
+kable(presentations,
+      col.names = c("Title", "Presenters", "Conference", "Date", "Type")) |>
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+## Other Dissemination
+
+List any other forms of dissemination (e.g., blog posts, press releases, social media, policy briefs).
+
+# PROJECT COLLABORATORS
+
+**Principal Investigator:** Name, Institution
+
+**Co-Investigators:** Names, Institutions
+
+**Biostatistician(s):** Names, Institution
+
+**Other Contributors:** Names, Roles
+
+# DATA SHARING AND REUSE
+
+**Data Sharing Statement:** Describe any plans for data sharing or public data deposition.
+
+**Data Availability:** If data has been deposited in a public repository, provide the repository name and accession number/DOI.
+
+**Reuse Permissions:** Describe any licenses or restrictions on data reuse.
+
+# LESSONS LEARNED
+
+Document any challenges encountered during the project, lessons learned, and recommendations for future similar projects.
+
+## Methodological Insights
+
+Note any methodological considerations or insights gained during the analysis.
+
+## Workflow Improvements
+
+Suggest any improvements to the workflow or processes for future projects.
+
+# PROJECT CLOSEOUT CHECKLIST
+
+- [ ] All data files archived in appropriate location
+- [ ] All code documented and archived
+- [ ] Final reports delivered to collaborators
+- [ ] Manuscripts submitted or published
+- [ ] Data sharing requirements met
+- [ ] Authorship and acknowledgments finalized
+- [ ] Project files backed up
+- [ ] Collaborators notified of project completion
+
+# NOTES
+
+Additional notes or comments regarding project closeout.
