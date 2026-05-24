@@ -1,0 +1,76 @@
+---
+title: "How to create project closeout documentation"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{How to create project closeout documentation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(bsu.tools)
+```
+
+The `new_project_closeout()` function enables you to create a new Quarto document
+for documenting project closeout information using a standardized template.
+
+## Function Arguments
+
+The function has two arguments:
+
+- **filename**: the name of your new file. If you forget the `.qmd` ending the
+function will automatically add it for you.
+- **path**: where should the file be created. Uses `here::here()` by default.
+
+## Template Sections
+
+The project closeout template includes comprehensive sections for documenting
+the completion of a research project:
+
+- **Project Information**: Basic project details including title, investigators, and completion date
+- **Project Summary**: Brief overview of research question, methods, and key findings
+- **Final Data Files**: Table documenting raw data, processed data, and analysis datasets with their locations
+- **Code and Analysis Files**: Table listing all scripts, code, and analysis files
+- **Reports and Outputs**: Table of final reports and deliverables
+- **Publications and Presentations**: Tables for manuscripts, conference presentations, and other dissemination
+- **Project Collaborators**: List of all team members and their roles
+- **Data Sharing and Reuse**: Information about data availability and sharing plans
+- **Lessons Learned**: Documentation of challenges and recommendations
+- **Project Closeout Checklist**: Checklist to ensure all closeout tasks are completed
+
+## Usage
+
+Simply call `new_project_closeout(filename = "project-name-closeout")` in the
+console to create and open your new project closeout document from the template.
+
+```{r, eval=FALSE}
+# Create a new project closeout document
+new_project_closeout(filename = "my-project-closeout")
+
+# Create in a specific directory
+new_project_closeout(filename = "my-project-closeout", path = "path/to/directory")
+```
+
+## Example Output
+
+The template generates an HTML document with a table of contents and all the
+structured sections needed to document project completion. The template includes
+comprehensive tables for tracking final files (raw data, processed data, code/report)
+and publications, with example entries that can be customized for your specific project.
+
+## When to Use
+
+Use this template when closing out a project to:
+
+- Document the location of all final data files and code
+- Track publications and presentations resulting from the project
+- Create a comprehensive record for future reference
+- Ensure all closeout tasks are completed
+- Facilitate knowledge transfer and project archival
